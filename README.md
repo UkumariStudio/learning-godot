@@ -1,3 +1,3 @@
 # Proyectos
 - ### **Asteroids**
-![Asteroids ingame](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Asteroids ingame](https://github.com/UkumariStudio/learning-godot/blob/develop/Images/Asteroids.png?raw=true)
