@@ -4,7 +4,7 @@
 [ext_resource path="res://common/Wraparound.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/Player.gd" type="Script" id=3]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["ships"]]
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -24,3 +24,10 @@ __meta__ = {
 }
 
 [node name="Wraparound" parent="." instance=ExtResource( 2 )]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PoolVector2Array( 30, -1, -23, -12, -23, 12, 30, 1 )
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

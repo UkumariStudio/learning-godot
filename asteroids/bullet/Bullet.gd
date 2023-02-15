@@ -19,3 +19,8 @@ func _on_Bullet_body_shape_entered(body_rid, body, body_shape_index, local_shape
 		body.call_deferred("explode")
 		get_parent().call_deferred("remove_child", self)
 		queue_free()
+
+	if (body.is_in_group("ships")):
+		body.call_deferred("destroy")
+		get_parent().call_deferred("remove_child", self)
+		queue_free()

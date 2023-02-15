@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 28.0
 
-[node name="UFO" type="KinematicBody2D"]
+[node name="UFO" type="KinematicBody2D" groups=["ships"]]
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true

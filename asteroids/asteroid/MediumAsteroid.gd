@@ -2,11 +2,16 @@ extends "res://asteroid/Asteroid.gd"
 
 var small_asteroid_scene = load("res://asteroid/SmallAsteroid.tscn")
 
+func _ready():
+	score_value = 50
+
 func explode():
 	if is_exploded:
 		return
 
 	is_exploded = true
+	
+	emit_signal("score_changed", score_value)
 	
 	_spawn_small_asteroid()
 	

@@ -1,11 +1,15 @@
 extends RigidBody2D
 
+var medium_asteroid_scene = load("res://asteroid/MediumAsteroid.tscn")
+
 var thrust = Vector2.ZERO
 var max_speed = 0
 var is_exploded = false
-var medium_asteroid_scene = load("res://asteroid/MediumAsteroid.tscn")
+var score_value = 20
 
 var random = RandomNumberGenerator.new()
+
+signal score_changed
 
 func _ready():
 	random.randomize()
@@ -13,6 +17,9 @@ func _ready():
 	var thrust_y = random.randi_range(-250, 250)
 	thrust = Vector2(thrust_x, thrust_y)
 	max_speed = random.randi_range(150, 650)
+	
+	var label = get_tree().get_root().get_node("AsteroidField/GUI/MarginContainer/HBoxContainer/VBoxContainer/Score")
+	self.connect("score_changed", label, "update_score")
 
 func _integrate_forces(state):
 	gravity_scale = 0
@@ -29,6 +36,8 @@ func explode():
 		return
 
 	is_exploded = true
+	
+	emit_signal("score_changed", score_value)
 	
 	_spawn_medium_asteroid()
 	
